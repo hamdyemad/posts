@@ -1,0 +1,30 @@
+.all-posts {
+  padding: 20px 0;
+  h2 {
+    margin-bottom: 20px;
+  }
+  table {
+    tbody {
+      tr {
+        outline: none;
+        cursor: pointer;
+        transition: all 0.2s ease-out;
+        &:hover {
+          color: #222;
+          background-color: #fff;
+        }
+        th,
+        td {
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+}
+
+::ng-deep {
+  .ngx-shimmer {
+    width: 100% !important;
+    height: 60px !important;
+  }
+}

@@ -1,0 +1,93 @@
+<div class="edit-post animated fadeIn">
+  <div class="container">
+    <!--Start Shimmer Loading-->
+    <div class="on-load" *ngIf="isLoading == true">
+      <ngx-shimmer-loading class="text-center"></ngx-shimmer-loading>
+      <ngx-shimmer-loading></ngx-shimmer-loading>
+      <ngx-shimmer-loading></ngx-shimmer-loading>
+    </div>
+    <!--End Shimmer Loading-->
+    <div class="loaded" *ngIf="isLoading == false">
+      <i class="fas fa-chevron-circle-left" routerLink="/"></i>
+      <h2 class="text-center">Edit Post</h2>
+      <form [formGroup]="editForm">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Edit your title" formControlName="title" [ngClass]="{
+          'is-valid': !title().invalid && title().dirty,
+          'is-invalid': title().invalid && title().dirty
+        }">
+          <div class="error" *ngIf="title().errors?.required && title().dirty">this input is required</div>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Edit your body" formControlName="body" [ngClass]="{
+          'is-valid': !body().invalid && body().dirty,
+          'is-invalid': body().invalid && body().dirty
+        }">
+          <div class="error" *ngIf="body().errors?.required && body().dirty">this input is required</div>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary mr-3" [disabled]="editForm.invalid" (click)="updatePost()">Edit</button>
+          <button class="btn btn-danger" (click)="openModal(content)">Delete</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!--Start Delete Modal-->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Delete Post</h4>
+    <i class="fas fa-times" (click)="modal.dismiss()"></i>
+  </div>
+  <div class="modal-body">
+    are you sure you want to delete post ?
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="modal.close()">Delete</button>
+  </div>
+</ng-template>
+<!--End Delete Modal-->
+
+<!--Start Delete Loading-->
+<div class="loading" *ngIf="isDeleting == true;">
+  <div class="about-loading">
+    <h5>post is deleting now!</h5>
+    <div class="lds-default">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+</div>
+<!--End Delte Loading-->
+
+<!--Start Update Loading-->
+<div class="loading" *ngIf="isUpdated == true;">
+  <div class="about-loading">
+    <h5>post is updating now!</h5>
+    <div class="lds-default">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+</div>
+<!--End Update Loading-->
